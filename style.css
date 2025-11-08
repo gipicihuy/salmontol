@@ -291,3 +291,18 @@ footer {
         font-size: 1.5rem;
     }
 }
+
+/* --- Penyeragaman Warna Ikon Font Awesome (Warna Biru: #6bb6ff) --- */
+
+/* Menargetkan semua ikon Font Awesome di dalam list dan mengubahnya menjadi warna biru */
+.list i.fa-solid, 
+.list i.fab {
+    color: #6bb6ff;
+    margin-right: 5px; /* Memberikan sedikit jarak */
+}
+
+/* Mengubah warna khusus untuk ikon Lock di Judul (jika ada) */
+.peler i.fa-lock {
+    color: #6bb6ff;
+    margin-right: 8px; 
+}
