@@ -21,7 +21,7 @@ body {
     align-items: center;
 }
 
-/* LOADING OVERLAY (Disesuaikan warnanya) */
+/* LOADING OVERLAY */
 #loading-overlay {
     position: fixed;
     top: 0;
@@ -81,7 +81,7 @@ body {
     font-weight: 500;
 }
 
-/* GALLERY DETAILS/SUMMARY (Lebih Rapi) */
+/* GALLERY DETAILS/SUMMARY */
 details {
     margin: 20px auto 30px;
 }
@@ -112,7 +112,7 @@ details[open] summary {
     margin-bottom: 15px;
 }
 
-/* IMAGE GALLERY (Menggunakan Flexbox Rapi) */
+/* IMAGE GALLERY (Flexbox Rapi) */
 .image-container {
     display: flex;
     flex-wrap: wrap;
@@ -221,14 +221,13 @@ ul {
 
 /* ICONS & MATERIAL SYMBOLS (PERBAIKAN WARNA) */
 
-/* Warna Default untuk semua ikon (Material Symbols dan Font Awesome) di dalam list item */
-.list .material-symbols-outlined,
+/* Warna Default untuk semua ikon (Font Awesome) di dalam list item */
 .list .fa-solid,
 .list .fa-brands {
     font-size: 20px;
     vertical-align: middle;
     color: #ff80ab; /* Default Pink Accent untuk Ikon List */
-    flex-shrink: 0; /* Mencegah ikon menyusut di Flexbox */
+    flex-shrink: 0; 
 }
 
 /* Ikon khusus yang memiliki warna berbeda */
@@ -236,9 +235,9 @@ ul {
     color: #25D366 !important; /* Hijau WhatsApp */
 }
 
-/* Warna khusus untuk Material Symbols yang sudah diberi kelas di HTML */
+/* Warna khusus untuk ikon yang diberi kelas di HTML (agama, sikap, kosakata) */
 .agama, .sikap, .kosakata {
-    color: #00bcd4 !important; /* Cyan Accent untuk Ikon Agama, Sikap, Kosakata */
+    color: #00bcd4 !important; /* Cyan Accent */
 }
 
 /* Ikon kulit di-override menjadi putih */
@@ -247,7 +246,7 @@ ul {
 }
 
 /* Ikon di header (h3.peler) */
-.peler .material-symbols-outlined {
+.peler .fa-lock {
     color: #ff80ab;
 }
 
