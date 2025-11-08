@@ -1,28 +1,34 @@
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* FONT IMPORTS */
 @import url('https://fonts.cdnfonts.com/css/ubuntu');
 
+/* GLOBAL BODY STYLES */
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1d3a 50%, #2a2d4a 100%);
-    color: #ffffff;
+    background: #0d1a26; /* Dark Teal Background */
+    color: #e0f7fa; /* Light Cyan Text */
     font-family: 'Ubuntu', sans-serif !important;
-    padding: 20px 10px 120px;
-    line-height: 1.8;
+    padding: 30px 15px 100px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Loading Overlay (Tidak Berubah) */
+/* LOADING OVERLAY (Disesuaikan warnanya) */
 #loading-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #0a0e27;
+    background: #0d1a26;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,8 +36,8 @@ body {
 }
 
 .loading-spinner {
-    border: 5px solid rgba(255, 107, 107, 0.2);
-    border-top: 5px solid #ff6b6b;
+    border: 5px solid rgba(0, 188, 212, 0.2); /* Cyan */
+    border-top: 5px solid #ff80ab; /* Pink Accent */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -43,235 +49,62 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Moving Text (Tidak Berubah) */
-.moving-text-container {
+/* MAIN CONTENT CONTAINER */
+.main-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 0;
+}
+
+/* HEADER SECTION (Ganti Moving Text) */
+.header-box {
     text-align: center;
-    margin: 20px 0 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #1c2e40; /* Darker Teal Box */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.moving-text {
-    display: inline-block;
-    font-size: clamp(1.3rem, 4vw, 2rem);
+.header-box h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     font-weight: 700;
-    color: #ff6b6b;
-    font-family: 'Ubuntu', sans-serif !important;
-    animation: bounce 2s ease-in-out infinite;
-    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
-    letter-spacing: 2px;
+    color: #00bcd4; /* Cyan Accent */
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+    margin-bottom: 10px;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-/* Image Gallery - Diubah dari Grid menjadi Flexbox */
-.image-container {
-    /* **MENGGANTI GRID DENGAN FLEXBOX** */
-    display: flex;
-    flex-wrap: wrap; /* Memungkinkan item untuk pindah ke baris berikutnya */
-    justify-content: center; /* Memusatkan gambar di tengah container */
-    gap: 15px; /* Spasi antar gambar */
-    margin: 0 auto 30px;
-    max-width: 1200px;
-    padding: 0 10px;
-}
-
-.image-container img {
-    /* Penyesuaian ukuran untuk tata letak flex */
-    width: calc(33.333% - 10px); /* 3 gambar per baris di layar besar (dikurangi gap) */
-    min-width: 150px; /* Ukuran minimum untuk layar yang lebih kecil */
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 107, 107, 0.3);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.image-container img:hover {
-    transform: translateY(-5px);
-    border-color: #ff6b6b;
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
-}
-
-/* Divider (Tidak Berubah) */
-hr {
-    border: none;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
-    margin: 20px 0;
-}
-
-/* Marquee (Tidak Berubah) */
-marquee {
-    background: rgba(255, 107, 107, 0.15);
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    margin: 20px 0;
-    color: #ffffff;
-}
-
-marquee span {
-    color: #ff6b6b !important;
-}
-
-/* Header Section (Tidak Berubah) */
-.peler {
-    max-width: 800px;
-    margin: 30px auto 20px;
-    padding: 15px;
-    background: rgba(26, 29, 58, 0.7);
-    border: 2px solid #ff6b6b;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 700;
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #e0e0e0;
-}
-
-.material-symbols-outlined {
-    font-size: 22px;
-    vertical-align: middle;
-}
-
-.private {
-    color: #ff6b6b;
-}
-
-/* List Items (Tidak Berubah) */
-ul {
-    list-style: none;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.list {
-    background: rgba(26, 29, 58, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    border-radius: 10px;
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    color: #ffffff;
-    font-family: 'Ubuntu', sans-serif !important;
-}
-
-.list:hover {
-    background: rgba(26, 29, 58, 0.8);
-    border-color: #ff6b6b;
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
-}
-
-.text, .map, .link {
-    color: #ff6b6b;
-    margin-top: 8px;
+.header-box p {
+    font-size: 1rem;
+    color: #ff80ab; /* Pink Accent */
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
 }
 
-.text i, .text .material-symbols-outlined {
-    margin-right: 6px;
-}
-
-.map {
-    gap: 8px;
-}
-
-.map .material-symbols-outlined {
-    flex-shrink: 0;
-}
-
-.map span:last-child {
-    color: #ff6b6b;
-}
-
-.link {
-    gap: 8px;
-}
-
-.link a {
-    color: #6bb6ff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.link a:hover {
-    color: #8fc9ff;
-    text-decoration: underline;
-}
-
-.fa-whatsapp {
-    color: #25D366;
-    font-size: 20px;
-}
-
-.fa-user, .fa-cake-candles, .fa-calendar-days, .fa-person, .fa-person-dress, .fa-brain, .fa-heart-crack, .fa-user-tie {
-    color: #ff6b6b;
-}
-
-.fa-cat {
-    color: #ff6b6b;
-}
-
-.black {
-    color: #ffffff;
-}
-
-.agama, .sikap, .kosakata {
-    color: #6bb6ff;
-}
-
-/* Gallery Details/Summary (Tidak Berubah) */
+/* GALLERY DETAILS/SUMMARY (Lebih Rapi) */
 details {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 10px;
+    margin: 20px auto 30px;
 }
 
 summary {
-    background: rgba(255, 107, 107, 0.15);
-    border: 2px solid #ff6b6b;
+    background: #00bcd4; /* Cyan solid */
+    border: 2px solid #00bcd4;
     border-radius: 10px;
     padding: 15px 20px;
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #ff6b6b;
+    color: #0d1a26; /* Dark text for contrast */
     list-style: none;
     text-align: center;
     transition: all 0.3s ease;
     user-select: none;
-    font-family: 'Ubuntu', sans-serif !important;
-}
-
-summary::-webkit-details-marker {
-    display: none;
-}
-
-summary::before {
-    content: '📸 ';
-    margin-right: 8px;
 }
 
 summary:hover {
-    background: rgba(255, 107, 107, 0.25);
+    background: #00a6b7;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.5);
 }
 
 details[open] summary {
@@ -279,112 +112,199 @@ details[open] summary {
     margin-bottom: 15px;
 }
 
-details[open] summary::before {
-    content: '📷 ';
+/* IMAGE GALLERY (Menggunakan Flexbox Rapi) */
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    background: #1c2e40;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
 }
 
-/* Footer (Tidak Berubah) */
+.image-container img {
+    width: calc(33.333% - 8px); /* 3 images per row */
+    min-width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 128, 171, 0.3); /* Soft Pink Border */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+    border-color: #ff80ab;
+    box-shadow: 0 8px 20px rgba(255, 128, 171, 0.4);
+}
+
+/* PERSONAL INFO HEADING */
+.peler {
+    max-width: 900px;
+    margin: 30px auto 20px;
+    padding: 15px;
+    background: #263238; /* Slightly lighter box */
+    border-left: 5px solid #ff80ab; /* Pink bar accent */
+    border-radius: 8px;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #e0f7fa;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.private {
+    color: #ff80ab;
+}
+
+/* LIST ITEMS (Card Style) */
+ul {
+    list-style: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.list {
+    background: #1c2e40;
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    color: #e0f7fa;
+    display: flex;
+    flex-direction: column;
+}
+
+.list:hover {
+    background: #263238;
+    border-color: #00bcd4;
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+}
+
+.list > span { /* Untuk label item list */
+    font-weight: 400;
+    color: #b3e5fc; /* Lighter Cyan for Label */
+    margin-bottom: 5px;
+}
+
+.list > div { /* Untuk value item list */
+    font-weight: 600;
+    color: #ff80ab; /* Pink for Value */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.map span:last-child {
+    color: #ff80ab;
+}
+
+.link a {
+    color: #ff80ab;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: #f48fb1;
+    text-decoration: underline;
+}
+
+/* ICONS & MATERIAL SYMBOLS */
+.material-symbols-outlined {
+    font-size: 20px;
+    vertical-align: middle;
+    color: #00bcd4; /* Default Icon Cyan */
+}
+
+/* Specific icon colors */
+.fa-whatsapp { color: #25D366; }
+.fa-user, .fa-cake-candles, .fa-calendar-days, .fa-person, .fa-person-dress, .fa-brain, .fa-heart-crack, .fa-user-tie {
+    color: #ff80ab;
+}
+.agama, .sikap, .kosakata {
+    color: #00bcd4;
+}
+.black { /* Warna untuk ikon kulit */
+    color: #ffffff; 
+}
+.fa-cat {
+    color: #ff80ab;
+}
+
+/* FOOTER (Lebih minimalis) */
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(10, 14, 39, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 2px solid rgba(255, 107, 107, 0.3);
-    padding: 12px 10px;
+    background: rgba(13, 26, 38, 0.95);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(0, 188, 212, 0.2);
+    padding: 10px;
     text-align: center;
     z-index: 100;
-    color: #999;
-    font-size: 0.85rem;
+    color: #819ea6;
+    font-size: 0.8rem;
 }
 
-/* SweetAlert Custom (Tidak Berubah) */
+/* SweetAlert Custom (Warna Disesuaikan) */
 .swal2-popup {
-    background: #1a1d3a !important;
-    border: 2px solid #ff6b6b !important;
+    background: #1c2e40 !important;
+    border: 2px solid #00bcd4 !important;
     font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-title {
-    color: #ff6b6b !important;
+    color: #ff80ab !important; /* Pink Title */
     font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-html-container {
-    color: #ffffff !important;
+    color: #e0f7fa !important;
     font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-confirm {
-    background: #ff6b6b !important;
+    background: #ff80ab !important; /* Pink Button */
     border: none !important;
     font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-cancel {
-    background: #6bb6ff !important;
+    background: #00bcd4 !important; /* Cyan Button */
     border: none !important;
     font-family: 'Ubuntu', sans-serif !important;
 }
 
-/* Responsive Design - Diperbarui untuk Flexbox */
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-    body {
-        padding: 15px 5px 80px;
-    }
-    
-    .image-container {
-        gap: 10px;
-    }
-    
     .image-container img {
-        width: calc(50% - 5px); /* 2 gambar per baris di tablet/layar kecil */
-        height: 150px;
+        width: calc(50% - 6px); /* 2 images per row */
+        height: 120px;
     }
-    
-    .peler {
-        font-size: 1rem;
-        padding: 12px;
-    }
-    
-    .list {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
-    
-    summary {
-        font-size: 1rem;
-        padding: 12px 15px;
+
+    ul {
+        grid-template-columns: 1fr; /* Stack lists on small screens */
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 15px 5px 70px;
-    }
-    
     .image-container img {
-        width: 100%; /* 1 gambar per baris di ponsel */
-        min-width: unset;
-        height: auto; /* Tinggi otomatis agar pas */
+        width: 100%; /* 1 image per row */
+        height: auto;
     }
     
-    .moving-text {
-        font-size: 1rem;
+    .header-box h2 {
+        font-size: 1.5rem;
     }
-    
-    marquee {
-        font-size: 0.85rem;
-        padding: 10px;
-    }
-    
-    summary {
-        font-size: 0.95rem;
-    }
-}
-
-/* Smooth Scrolling (Tidak Berubah) */
-html {
-    scroll-behavior: smooth;
 }
