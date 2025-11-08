@@ -4,11 +4,13 @@
     box-sizing: border-box;
 }
 
+@import url('https://fonts.cdnfonts.com/css/ubuntu');
+
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #0a0e27 0%, #1a1d3a 50%, #2a2d4a 100%);
     color: #ffffff;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu', sans-serif !important;
     padding: 20px 10px 120px;
     line-height: 1.8;
 }
@@ -52,7 +54,7 @@ body {
     font-size: clamp(1.3rem, 4vw, 2rem);
     font-weight: 700;
     color: #ff6b6b;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu', sans-serif !important;
     animation: bounce 2s ease-in-out infinite;
     text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
     letter-spacing: 2px;
@@ -158,6 +160,7 @@ ul {
     transition: all 0.3s ease;
     font-size: 0.95rem;
     color: #ffffff;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 .list:hover {
@@ -178,19 +181,23 @@ ul {
 }
 
 .text i, .text .material-symbols-outlined {
-    margin-right: 4px;
+    margin-right: 6px;
 }
 
 .map {
-    gap: 6px;
+    gap: 8px;
 }
 
 .map .material-symbols-outlined {
     flex-shrink: 0;
 }
 
+.map span:last-child {
+    color: #ff6b6b;
+}
+
 .link {
-    gap: 6px;
+    gap: 8px;
 }
 
 .link a {
@@ -207,12 +214,14 @@ ul {
 .fa-whatsapp {
     color: #25D366;
     font-size: 20px;
-    margin-right: 4px;
 }
 
-.fa-user, .fa-cake-candles {
+.fa-user, .fa-cake-candles, .fa-calendar-days, .fa-person, .fa-person-dress, .fa-brain, .fa-heart-crack, .fa-user-tie {
     color: #ff6b6b;
-    margin-right: 6px;
+}
+
+.fa-cat {
+    color: #ff6b6b;
 }
 
 .black {
@@ -221,7 +230,6 @@ ul {
 
 .agama, .sikap, .kosakata {
     color: #6bb6ff;
-    margin-right: 6px;
 }
 
 /* Gallery Details/Summary */
@@ -244,6 +252,7 @@ summary {
     text-align: center;
     transition: all 0.3s ease;
     user-select: none;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 summary::-webkit-details-marker {
