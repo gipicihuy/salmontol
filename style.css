@@ -203,6 +203,52 @@ ul {
     color: #4ea8de;
 }
 
+/* Gallery Details/Summary */
+details {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+summary {
+    background: rgba(233, 69, 96, 0.2);
+    border: 2px solid #e94560;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e94560;
+    list-style: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::before {
+    content: '📸 ';
+    margin-right: 8px;
+}
+
+summary:hover {
+    background: rgba(233, 69, 96, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+}
+
+details[open] summary {
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 15px;
+}
+
+details[open] summary::before {
+    content: '📷 ';
+}
+
 /* Footer */
 footer {
     position: fixed;
@@ -212,56 +258,11 @@ footer {
     background: rgba(15, 52, 96, 0.95);
     backdrop-filter: blur(10px);
     border-top: 2px solid rgba(233, 69, 96, 0.3);
-    padding: 15px 10px;
+    padding: 12px 10px;
     text-align: center;
     z-index: 100;
-}
-
-footer > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
-
-footer > div > div:first-child,
-footer > div > div:last-child {
-    color: #e94560;
-    font-weight: 700;
-    font-size: 1rem;
-    text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-footer img {
-    width: auto;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid #e94560;
-    box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
-}
-
-footer b {
-    color: #bbb;
-    font-size: 0.9rem;
-}
-
-footer a {
-    color: #4ea8de;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #5dade2;
+    color: #999;
+    font-size: 0.85rem;
 }
 
 /* SweetAlert Custom */
@@ -292,7 +293,7 @@ footer a:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
     body {
-        padding: 15px 5px 140px;
+        padding: 15px 5px 80px;
     }
     
     .image-container {
@@ -314,21 +315,17 @@ footer a:hover {
         font-size: 0.9rem;
     }
     
-    footer img {
-        height: 60px;
-    }
-    
-    footer > div {
-        gap: 10px;
-    }
-    
-    footer > div > div:first-child,
-    footer > div > div:last-child {
-        font-size: 0.85rem;
+    summary {
+        font-size: 1rem;
+        padding: 12px 15px;
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 15px 5px 70px;
+    }
+    
     .image-container {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -340,6 +337,10 @@ footer a:hover {
     marquee {
         font-size: 0.85rem;
         padding: 10px;
+    }
+    
+    summary {
+        font-size: 0.95rem;
     }
 }
 
