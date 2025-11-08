@@ -120,7 +120,9 @@ marquee span {
     margin: 30px auto 20px;
     padding: 15px;
     background: rgba(26, 29, 58, 0.7);
-    border: 2px solid #ff6b6b;
+    /* MODIFIKASI: Border diubah ke biru dan ditambahkan shadow */
+    border: 2px solid #6bb6ff; /* Biru */
+    box-shadow: 0 0 15px rgba(107, 182, 255, 0.4); /* Shadow Biru */
     border-radius: 12px;
     text-align: center;
     font-size: 1.1rem;
@@ -138,7 +140,7 @@ marquee span {
     vertical-align: middle;
 }
 
-/* MODIFIKASI: Lock icon di Header sekarang biru (#6bb6ff) */
+/* Lock icon di Header sekarang biru (#6bb6ff) */
 .private {
     color: #6bb6ff;
 }
@@ -212,13 +214,13 @@ ul {
     text-decoration: underline;
 }
 
-/* Ikon WA dikecualikan, tetap hijau */
+/* MODIFIKASI: Ikon WhatsApp diubah ke biru (#6bb6ff) untuk konsistensi */
 .fa-whatsapp {
-    color: #25D366;
+    color: #6bb6ff; 
     font-size: 20px;
 }
 
-/* MODIFIKASI: Semua ikon FA yang awalnya pink/red (#ff6b6b) menjadi biru (#6bb6ff) */
+/* Semua ikon FA yang awalnya pink/red (#ff6b6b) menjadi biru (#6bb6ff) */
 .fa-user, .fa-cake-candles, .fa-calendar-days, .fa-person, .fa-person-dress, .fa-brain, .fa-heart-crack, .fa-user-tie {
     color: #6bb6ff;
 }
@@ -227,7 +229,7 @@ ul {
     color: #6bb6ff;
 }
 
-/* MODIFIKASI: Ikon Skin (.black) diubah dari putih (#ffffff) menjadi biru (#6bb6ff) */
+/* Ikon Skin (.black) diubah dari putih (#ffffff) menjadi biru (#6bb6ff) */
 .black {
     color: #6bb6ff;
 }
