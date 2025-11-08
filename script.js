@@ -1,4 +1,4 @@
-// CATATAN: Variabel SECRET_PASSWORD sekarang dimuat dari config.js!
+// CATATAN: Variabel SECRET_PASSWORD harus dimuat dari config.js!
 
 // Calculate age automatically
 function calculateAge() {
@@ -7,7 +7,6 @@ function calculateAge() {
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     
-    // If birthday hasn't occurred this year yet, subtract 1
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
@@ -39,10 +38,14 @@ function showProvocativeAlert() {
 
 // Fungsi untuk meminta password
 function showPasswordPrompt() {
-    // Pastikan SECRET_PASSWORD tersedia (dari config.js)
+    
+    // Safety check for SECRET_PASSWORD
     if (typeof SECRET_PASSWORD === 'undefined') {
-        alert('FATAL ERROR: Password variable is missing! Cek apakah file config.js sudah dimuat.');
-        document.getElementById('loading-overlay').style.display = 'none';
+        Swal.fire({
+            icon: 'error',
+            title: 'Konfigurasi Error',
+            text: 'File config.js tidak ditemukan atau tidak memuat variabel SECRET_PASSWORD. Harap periksa konsol browser.'
+        });
         return; 
     }
     
@@ -64,8 +67,7 @@ function showPasswordPrompt() {
     }).then((result) => {
         if (result.isConfirmed) {
             if (result.value === SECRET_PASSWORD) {
-                // Password Benar: Sembunyikan Overlay & Tampilkan Konten
-                document.getElementById('loading-overlay').style.display = 'none';
+                // Password Benar: Tampilkan Konten
                 document.getElementById('main-content').style.display = 'block';
                 showProvocativeAlert();
             } else {
@@ -80,8 +82,7 @@ function showPasswordPrompt() {
                 });
             }
         } else {
-            // Jika dibatalkan: Tetap di halaman dan sembunyikan overlay, tapi konten tidak muncul
-            document.getElementById('loading-overlay').style.display = 'none'; 
+            // Jika dibatalkan
             Swal.fire({
                 icon: 'info',
                 title: 'Akses Ditolak',
@@ -91,8 +92,8 @@ function showPasswordPrompt() {
     });
 }
 
-// Jalankan semua logika utama saat semua elemen HTML selesai dimuat
-window.addEventListener('load', function() {
+// Jalankan semua logika utama saat DOM selesai dimuat
+document.addEventListener('DOMContentLoaded', function() {
     // 1. Set the age
     const ageElement = document.getElementById('age');
     if (ageElement) {
@@ -101,18 +102,4 @@ window.addEventListener('load', function() {
     
     // 2. Mulai dengan meminta password
     showPasswordPrompt();
-});
-
-// script.js (Tambahkan di bagian paling bawah)
-
-// Safety Fallback: Menyembunyikan loading overlay setelah 3 detik
-// Jika ada error JS yang mencegah showPasswordPrompt() berjalan, spinner akan hilang.
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        // Hanya sembunyikan jika main-content belum terlihat (artinya stuck)
-        if (loadingOverlay.style.display !== 'none') {
-            loadingOverlay.style.display = 'none';
-        }
-    }, 3000); 
 });
