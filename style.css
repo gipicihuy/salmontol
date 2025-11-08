@@ -6,11 +6,11 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: #eee;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1d3a 50%, #2a2d4a 100%);
+    color: #e0e0e0;
+    font-family: 'Crunch Chips', sans-serif;
     padding: 20px 10px 120px;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 /* Loading Overlay */
@@ -20,7 +20,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #0f3460;
+    background: #0a0e27;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,8 +28,8 @@ body {
 }
 
 .loading-spinner {
-    border: 5px solid rgba(255, 255, 255, 0.1);
-    border-top: 5px solid #e94560;
+    border: 5px solid rgba(255, 107, 107, 0.2);
+    border-top: 5px solid #ff6b6b;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -49,12 +49,13 @@ body {
 
 .moving-text {
     display: inline-block;
-    font-size: clamp(1.2rem, 4vw, 1.8rem);
-    font-weight: 600;
-    color: #e94560;
-    font-family: 'Courier New', monospace;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 700;
+    color: #ff6b6b;
+    font-family: 'Crunch Chips', sans-serif;
     animation: bounce 2s ease-in-out infinite;
-    text-shadow: 0 2px 10px rgba(233, 69, 96, 0.3);
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    letter-spacing: 2px;
 }
 
 @keyframes bounce {
@@ -77,37 +78,38 @@ body {
     height: 180px;
     object-fit: cover;
     border-radius: 12px;
-    border: 2px solid rgba(233, 69, 96, 0.3);
+    border: 2px solid rgba(255, 107, 107, 0.3);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .image-container img:hover {
     transform: translateY(-5px);
-    border-color: #e94560;
-    box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+    border-color: #ff6b6b;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
 }
 
 /* Divider */
 hr {
     border: none;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #e94560, transparent);
+    background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
     margin: 20px 0;
 }
 
 /* Marquee */
 marquee {
-    background: rgba(233, 69, 96, 0.1);
+    background: rgba(255, 107, 107, 0.15);
     padding: 12px;
     border-radius: 8px;
     font-size: 0.95rem;
-    border: 1px solid rgba(233, 69, 96, 0.2);
+    border: 1px solid rgba(255, 107, 107, 0.3);
     margin: 20px 0;
+    color: #d0d0d0;
 }
 
 marquee span {
-    color: #e94560 !important;
+    color: #ff6b6b !important;
 }
 
 /* Header Section */
@@ -115,17 +117,18 @@ marquee span {
     max-width: 800px;
     margin: 30px auto 20px;
     padding: 15px;
-    background: rgba(22, 33, 62, 0.6);
-    border: 2px solid #e94560;
+    background: rgba(26, 29, 58, 0.7);
+    border: 2px solid #ff6b6b;
     border-radius: 12px;
     text-align: center;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    color: #e0e0e0;
 }
 
 .material-symbols-outlined {
@@ -134,7 +137,7 @@ marquee span {
 }
 
 .private {
-    color: #e94560;
+    color: #ff6b6b;
 }
 
 /* List Items */
@@ -146,26 +149,28 @@ ul {
 }
 
 .list {
-    background: rgba(22, 33, 62, 0.5);
+    background: rgba(26, 29, 58, 0.6);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(233, 69, 96, 0.3);
+    border: 1px solid rgba(255, 107, 107, 0.3);
     border-radius: 10px;
     padding: 15px 20px;
     margin-bottom: 15px;
     transition: all 0.3s ease;
     font-size: 0.95rem;
+    color: #d0d0d0;
 }
 
 .list:hover {
-    background: rgba(22, 33, 62, 0.7);
-    border-color: #e94560;
+    background: rgba(26, 29, 58, 0.8);
+    border-color: #ff6b6b;
     transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
 }
 
 .text, .map, .link {
-    color: #e94560;
+    color: #ff6b6b;
     margin-top: 5px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .map, .link {
@@ -176,13 +181,13 @@ ul {
 }
 
 .link a {
-    color: #4ea8de;
+    color: #6bb6ff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .link a:hover {
-    color: #5dade2;
+    color: #8fc9ff;
     text-decoration: underline;
 }
 
@@ -192,15 +197,15 @@ ul {
 }
 
 .fa-user, .fa-cake-candles {
-    color: #e94560;
+    color: #ff6b6b;
 }
 
 .black {
-    color: #eee;
+    color: #d0d0d0;
 }
 
 .agama, .sikap, .kosakata {
-    color: #4ea8de;
+    color: #6bb6ff;
 }
 
 /* Gallery Details/Summary */
@@ -211,14 +216,14 @@ details {
 }
 
 summary {
-    background: rgba(233, 69, 96, 0.2);
-    border: 2px solid #e94560;
+    background: rgba(255, 107, 107, 0.15);
+    border: 2px solid #ff6b6b;
     border-radius: 10px;
     padding: 15px 20px;
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #e94560;
+    color: #ff6b6b;
     list-style: none;
     text-align: center;
     transition: all 0.3s ease;
@@ -235,9 +240,9 @@ summary::before {
 }
 
 summary:hover {
-    background: rgba(233, 69, 96, 0.3);
+    background: rgba(255, 107, 107, 0.25);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
 details[open] summary {
@@ -255,9 +260,9 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(15, 52, 96, 0.95);
+    background: rgba(10, 14, 39, 0.95);
     backdrop-filter: blur(10px);
-    border-top: 2px solid rgba(233, 69, 96, 0.3);
+    border-top: 2px solid rgba(255, 107, 107, 0.3);
     padding: 12px 10px;
     text-align: center;
     z-index: 100;
@@ -267,27 +272,30 @@ footer {
 
 /* SweetAlert Custom */
 .swal2-popup {
-    background: #16213e !important;
-    border: 2px solid #e94560 !important;
+    background: #1a1d3a !important;
+    border: 2px solid #ff6b6b !important;
+    font-family: 'Crunch Chips', sans-serif !important;
 }
 
 .swal2-title {
-    color: #e94560 !important;
-    font-family: 'Courier New', monospace !important;
+    color: #ff6b6b !important;
+    font-family: 'Crunch Chips', sans-serif !important;
 }
 
 .swal2-html-container {
-    color: #eee !important;
+    color: #d0d0d0 !important;
 }
 
 .swal2-confirm {
-    background: #e94560 !important;
+    background: #ff6b6b !important;
     border: none !important;
+    font-family: 'Crunch Chips', sans-serif !important;
 }
 
 .swal2-cancel {
-    background: #4ea8de !important;
+    background: #6bb6ff !important;
     border: none !important;
+    font-family: 'Crunch Chips', sans-serif !important;
 }
 
 /* Responsive Design */
