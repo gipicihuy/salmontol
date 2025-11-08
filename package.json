@@ -1,0 +1,11 @@
+{
+  "name": "salma-private-info",
+  "version": "1.0.0",
+  "description": "Secure static site with Vercel Serverless Function",
+  "scripts": {
+    "start": "echo 'No start script needed for static build'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
