@@ -1,5 +1,4 @@
-// Anda dapat mengganti 'passwordku' dengan kata sandi yang Anda inginkan
-const SECRET_PASSWORD = 'passwordku'; 
+// CATATAN: Variabel SECRET_PASSWORD sekarang dimuat dari config.js!
 
 // Calculate age automatically
 function calculateAge() {
@@ -40,6 +39,13 @@ function showProvocativeAlert() {
 
 // Fungsi untuk meminta password
 function showPasswordPrompt() {
+    // Pastikan SECRET_PASSWORD tersedia (dari config.js)
+    if (typeof SECRET_PASSWORD === 'undefined') {
+        alert('FATAL ERROR: Password variable is missing! Cek apakah file config.js sudah dimuat.');
+        document.getElementById('loading-overlay').style.display = 'none';
+        return; 
+    }
+    
     Swal.fire({
         title: '🔒 Halaman Terkunci',
         input: 'password',
@@ -48,7 +54,7 @@ function showPasswordPrompt() {
         showCancelButton: true,
         confirmButtonText: 'Masuk',
         cancelButtonText: 'Batal',
-        allowOutsideClick: false, // Tidak bisa tutup tanpa input
+        allowOutsideClick: false, 
         allowEscapeKey: false,
         inputValidator: (value) => {
             if (!value) {
@@ -58,10 +64,9 @@ function showPasswordPrompt() {
     }).then((result) => {
         if (result.isConfirmed) {
             if (result.value === SECRET_PASSWORD) {
-                // Password Benar: Tampilkan konten
+                // Password Benar: Sembunyikan Overlay & Tampilkan Konten
                 document.getElementById('loading-overlay').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-                // Tampilkan alert provokatif setelah masuk
                 showProvocativeAlert();
             } else {
                 // Password Salah: Ulangi
@@ -71,12 +76,12 @@ function showPasswordPrompt() {
                     text: 'Silakan coba lagi.',
                     confirmButtonText: 'Coba Lagi'
                 }).then(() => {
-                    showPasswordPrompt();
+                    showPasswordPrompt(); // Rekursif: minta lagi
                 });
             }
         } else {
-            // Jika dibatalkan
-            document.getElementById('loading-overlay').style.display = 'none';
+            // Jika dibatalkan: Tetap di halaman dan sembunyikan overlay, tapi konten tidak muncul
+            document.getElementById('loading-overlay').style.display = 'none'; 
             Swal.fire({
                 icon: 'info',
                 title: 'Akses Ditolak',
@@ -86,14 +91,14 @@ function showPasswordPrompt() {
     });
 }
 
-// Jalankan saat halaman dimuat
+// Jalankan semua logika utama saat semua elemen HTML selesai dimuat
 window.addEventListener('load', function() {
-    // Set the age
+    // 1. Set the age
     const ageElement = document.getElementById('age');
     if (ageElement) {
         ageElement.textContent = calculateAge();
     }
     
-    // Mulai dengan meminta password
+    // 2. Mulai dengan meminta password
     showPasswordPrompt();
 });
