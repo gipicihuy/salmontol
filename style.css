@@ -15,7 +15,7 @@ body {
     line-height: 1.8;
 }
 
-/* Loading Overlay */
+/* Loading Overlay (Tidak Berubah) */
 #loading-overlay {
     position: fixed;
     top: 0;
@@ -43,7 +43,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Moving Text */
+/* Moving Text (Tidak Berubah) */
 .moving-text-container {
     text-align: center;
     margin: 20px 0 30px;
@@ -65,18 +65,22 @@ body {
     50% { transform: translateY(-15px); }
 }
 
-/* Image Gallery */
+/* Image Gallery - Diubah dari Grid menjadi Flexbox */
 .image-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
+    /* **MENGGANTI GRID DENGAN FLEXBOX** */
+    display: flex;
+    flex-wrap: wrap; /* Memungkinkan item untuk pindah ke baris berikutnya */
+    justify-content: center; /* Memusatkan gambar di tengah container */
+    gap: 15px; /* Spasi antar gambar */
     margin: 0 auto 30px;
     max-width: 1200px;
     padding: 0 10px;
 }
 
 .image-container img {
-    width: 100%;
+    /* Penyesuaian ukuran untuk tata letak flex */
+    width: calc(33.333% - 10px); /* 3 gambar per baris di layar besar (dikurangi gap) */
+    min-width: 150px; /* Ukuran minimum untuk layar yang lebih kecil */
     height: 180px;
     object-fit: cover;
     border-radius: 12px;
@@ -91,7 +95,7 @@ body {
     box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
 }
 
-/* Divider */
+/* Divider (Tidak Berubah) */
 hr {
     border: none;
     height: 2px;
@@ -99,7 +103,7 @@ hr {
     margin: 20px 0;
 }
 
-/* Marquee */
+/* Marquee (Tidak Berubah) */
 marquee {
     background: rgba(255, 107, 107, 0.15);
     padding: 12px;
@@ -114,7 +118,7 @@ marquee span {
     color: #ff6b6b !important;
 }
 
-/* Header Section */
+/* Header Section (Tidak Berubah) */
 .peler {
     max-width: 800px;
     margin: 30px auto 20px;
@@ -142,7 +146,7 @@ marquee span {
     color: #ff6b6b;
 }
 
-/* List Items */
+/* List Items (Tidak Berubah) */
 ul {
     list-style: none;
     max-width: 800px;
@@ -232,7 +236,7 @@ ul {
     color: #6bb6ff;
 }
 
-/* Gallery Details/Summary */
+/* Gallery Details/Summary (Tidak Berubah) */
 details {
     max-width: 1200px;
     margin: 20px auto;
@@ -279,7 +283,7 @@ details[open] summary::before {
     content: '📷 ';
 }
 
-/* Footer */
+/* Footer (Tidak Berubah) */
 footer {
     position: fixed;
     bottom: 0;
@@ -295,7 +299,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* SweetAlert Custom */
+/* SweetAlert Custom (Tidak Berubah) */
 .swal2-popup {
     background: #1a1d3a !important;
     border: 2px solid #ff6b6b !important;
@@ -324,18 +328,18 @@ footer {
     font-family: 'Ubuntu', sans-serif !important;
 }
 
-/* Responsive Design */
+/* Responsive Design - Diperbarui untuk Flexbox */
 @media (max-width: 768px) {
     body {
         padding: 15px 5px 80px;
     }
     
     .image-container {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 10px;
     }
     
     .image-container img {
+        width: calc(50% - 5px); /* 2 gambar per baris di tablet/layar kecil */
         height: 150px;
     }
     
@@ -360,8 +364,10 @@ footer {
         padding: 15px 5px 70px;
     }
     
-    .image-container {
-        grid-template-columns: repeat(2, 1fr);
+    .image-container img {
+        width: 100%; /* 1 gambar per baris di ponsel */
+        min-width: unset;
+        height: auto; /* Tinggi otomatis agar pas */
     }
     
     .moving-text {
@@ -378,7 +384,7 @@ footer {
     }
 }
 
-/* Smooth Scrolling */
+/* Smooth Scrolling (Tidak Berubah) */
 html {
     scroll-behavior: smooth;
 }
