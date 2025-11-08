@@ -7,8 +7,8 @@
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #0a0e27 0%, #1a1d3a 50%, #2a2d4a 100%);
-    color: #e0e0e0;
-    font-family: 'Crunch Chips', sans-serif;
+    color: #ffffff;
+    font-family: 'Ubuntu', sans-serif;
     padding: 20px 10px 120px;
     line-height: 1.8;
 }
@@ -52,7 +52,7 @@ body {
     font-size: clamp(1.3rem, 4vw, 2rem);
     font-weight: 700;
     color: #ff6b6b;
-    font-family: 'Crunch Chips', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     animation: bounce 2s ease-in-out infinite;
     text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
     letter-spacing: 2px;
@@ -105,7 +105,7 @@ marquee {
     font-size: 0.95rem;
     border: 1px solid rgba(255, 107, 107, 0.3);
     margin: 20px 0;
-    color: #d0d0d0;
+    color: #ffffff;
 }
 
 marquee span {
@@ -157,7 +157,7 @@ ul {
     margin-bottom: 15px;
     transition: all 0.3s ease;
     font-size: 0.95rem;
-    color: #d0d0d0;
+    color: #ffffff;
 }
 
 .list:hover {
@@ -169,15 +169,28 @@ ul {
 
 .text, .map, .link {
     color: #ff6b6b;
-    margin-top: 5px;
-    font-weight: 600;
-}
-
-.map, .link {
+    margin-top: 8px;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     flex-wrap: wrap;
+}
+
+.text i, .text .material-symbols-outlined {
+    margin-right: 4px;
+}
+
+.map {
+    gap: 6px;
+}
+
+.map .material-symbols-outlined {
+    flex-shrink: 0;
+}
+
+.link {
+    gap: 6px;
 }
 
 .link a {
@@ -193,19 +206,22 @@ ul {
 
 .fa-whatsapp {
     color: #25D366;
-    font-size: 18px;
+    font-size: 20px;
+    margin-right: 4px;
 }
 
 .fa-user, .fa-cake-candles {
     color: #ff6b6b;
+    margin-right: 6px;
 }
 
 .black {
-    color: #d0d0d0;
+    color: #ffffff;
 }
 
 .agama, .sikap, .kosakata {
     color: #6bb6ff;
+    margin-right: 6px;
 }
 
 /* Gallery Details/Summary */
@@ -274,28 +290,29 @@ footer {
 .swal2-popup {
     background: #1a1d3a !important;
     border: 2px solid #ff6b6b !important;
-    font-family: 'Crunch Chips', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-title {
     color: #ff6b6b !important;
-    font-family: 'Crunch Chips', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-html-container {
-    color: #d0d0d0 !important;
+    color: #ffffff !important;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-confirm {
     background: #ff6b6b !important;
     border: none !important;
-    font-family: 'Crunch Chips', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 .swal2-cancel {
     background: #6bb6ff !important;
     border: none !important;
-    font-family: 'Crunch Chips', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 
 /* Responsive Design */
