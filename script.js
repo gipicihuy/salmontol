@@ -1,10 +1,9 @@
 // script.js
-// TIDAK ADA PASSWORD RAHASIA DI FILE INI
+// TIDAK ADA KONTEN RAHASIA ATAU PASSWORD RAHASIA DI FILE INI
 
-// Fungsi untuk mengecek password ke API Serverless
-async function checkPassword(password) {
-    // Mengirim password ke fungsi serverless Vercel di /api/check
-    const response = await fetch('/api/check', {
+// Fungsi untuk mengambil data rahasia dari API
+async function fetchSensitiveData(password) {
+    const response = await fetch('/api/data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -12,27 +11,78 @@ async function checkPassword(password) {
         body: JSON.stringify({ password }),
     });
 
-    // Menerima balasan (hanya True/False)
     const data = await response.json();
-    return data.success;
-}
-
-// Calculate age automatically
-function calculateAge() {
-    const birthDate = new Date('2008-04-05');
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
     
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+    if (data.success) {
+        return data.data; // Mengembalikan data sensitif (JSON)
+    } else {
+        return null; // Password salah
     }
-    
-    return age;
 }
 
-// Fungsi untuk menampilkan pop-up SweetAlert (pesan provokatif)
+// Fungsi untuk membuat HTML dari data yang diterima
+function renderContent(data) {
+    // 1. Hitung Umur
+    const calculateAge = () => {
+        const birthDate = new Date('2008-04-05');
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    };
+    
+    const age = calculateAge();
+    const phoneLink = `https://wa.me/${data.phone.replace(/[^0-9+]/g, '')}?text=sugiarto+anjing+prapti+tolol+salma+yapit`;
+
+    // 2. Buat Galeri Foto HTML
+    const galleryHtml = data.gallery.map(url => 
+        `<img src="${url}" alt="Foto Salma" loading="lazy">`
+    ).join('');
+
+    // 3. Gabungkan semua HTML
+    const contentHtml = `
+    <div class="header-box">
+        <h2>> Salma Autis <</h2>
+        <p>Info Pribadi Salma Cik</p>
+    </div>
+  
+    <details>
+      <summary>Lihat Gallery Foto</summary>
+      <div class="image-container">
+        ${galleryHtml}
+      </div>
+    </details>
+    
+    <h3 class="peler"><i class="fa-solid private fa-lock"></i>Salma Personal Information</h3>
+    
+    <ul>
+        <li class="list"><span>Name :</span> <div class="text"><i class="fa-solid fa-user-tie"></i> ${data.name}</div></li>
+        <li class="list"><span>Residence :</span> <div class="map"><i class="fa-solid fa-location-dot"></i><span>${data.residence}</span></div></li>
+        <li class="list"><span>Date Of Birth :</span> <div class="text"><i class="fa-solid fa-cake-candles"></i> ${data.dob}</div></li>
+        <li class="list"><span>Age :</span> <div class="text"><i class="fa-solid fa-calendar-days"></i> ${age} Tahun</div></li>
+        <li class="list"><span>Religion :</span> <div class="text"><i class="fa-solid fa-kaaba agama"></i>${data.religion}</div></li>
+        <li class="list"><span>Phone number :</span> <div class="link"><i class="fab fa-whatsapp"></i> <a href="${phoneLink}">${data.phone}</a></div></li>
+        <li class="list"><span>Father's name :</span> <div class="text"><i class="fa-solid fa-person"></i> ${data.father}</div></li>
+        <li class="list"><span>Mother's name :</span> <div class="text"><i class="fa-solid fa-person-dress"></i> ${data.mother}</div></li>
+        <li class="list"><span>Skin :</span> <div class="text"><i class="fa-solid fa-user black"></i> ${data.skin}</div></li>
+        <li class="list"><span>Brain :</span> <div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></li>
+        <li class="list"><span>Attitude :</span><div class="text"><i class="fa-solid fa-mask sikap"></i>${data.attitude}</div></li>
+        <li class="list"><span>Unknown vocabulary :</span> <div class="text"><i class="fa-solid fa-book kosakata"></i>${data.vocab}</div></li>
+        <li class="list"><span>Ex :</span> <div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></li>
+    </ul>
+    `;
+    
+    // 4. Masukkan HTML ke dalam wadah (container)
+    document.getElementById('main-content').innerHTML = contentHtml;
+}
+
+
+// Fungsi SweetAlert dan Logika Akses
 function showProvocativeAlert() {
+    // (Fungsi ini tidak berubah, tetap sama seperti sebelumnya)
     Swal.fire({
         title: 'Woi Gembrot😹',
         text: 'Woi salma tolol gembrot negro yapit, debat sini anjg bawa aja semua temen lu sini😹',
@@ -53,7 +103,6 @@ function showProvocativeAlert() {
     });
 }
 
-// Fungsi untuk meminta password
 function showPasswordPrompt() {
     
     Swal.fire({
@@ -71,14 +120,28 @@ function showPasswordPrompt() {
                 return 'Kata sandi tidak boleh kosong!';
             }
         }
-    }).then(async (result) => { // Gunakan 'async' di sini
+    }).then(async (result) => {
         if (result.isConfirmed) {
             
-            // Cek password ke API (ini membutuhkan waktu, makanya kita pakai await)
-            const isCorrect = await checkPassword(result.value); 
+            // 1. Tampilkan loading SweetAlert saat menunggu API
+            Swal.fire({
+                title: 'Mengecek Akses...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
 
-            if (isCorrect) {
-                // Password Benar: Tampilkan Konten
+            // 2. Ambil data dari server
+            const sensitiveData = await fetchSensitiveData(result.value); 
+
+            Swal.close(); // Tutup loading
+
+            if (sensitiveData) {
+                // Password Benar: Render dan Tampilkan Konten
+                renderContent(sensitiveData);
                 document.getElementById('main-content').style.display = 'block';
                 showProvocativeAlert();
             } else {
@@ -89,7 +152,7 @@ function showPasswordPrompt() {
                     text: 'Silakan coba lagi.',
                     confirmButtonText: 'Coba Lagi'
                 }).then(() => {
-                    showPasswordPrompt(); // Rekursif: minta lagi
+                    showPasswordPrompt();
                 });
             }
         } else {
@@ -105,12 +168,6 @@ function showPasswordPrompt() {
 
 // Jalankan semua logika utama saat DOM selesai dimuat
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Set the age
-    const ageElement = document.getElementById('age');
-    if (ageElement) {
-        ageElement.textContent = calculateAge();
-    }
-    
-    // 2. Mulai dengan meminta password
+    // Mulai dengan meminta password
     showPasswordPrompt();
 });
