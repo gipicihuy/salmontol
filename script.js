@@ -1,4 +1,21 @@
-// CATATAN: Variabel SECRET_PASSWORD harus dimuat dari config.js!
+// script.js
+// TIDAK ADA PASSWORD RAHASIA DI FILE INI
+
+// Fungsi untuk mengecek password ke API Serverless
+async function checkPassword(password) {
+    // Mengirim password ke fungsi serverless Vercel di /api/check
+    const response = await fetch('/api/check', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+    });
+
+    // Menerima balasan (hanya True/False)
+    const data = await response.json();
+    return data.success;
+}
 
 // Calculate age automatically
 function calculateAge() {
@@ -39,16 +56,6 @@ function showProvocativeAlert() {
 // Fungsi untuk meminta password
 function showPasswordPrompt() {
     
-    // Safety check for SECRET_PASSWORD
-    if (typeof SECRET_PASSWORD === 'undefined') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Konfigurasi Error',
-            text: 'File config.js tidak ditemukan atau tidak memuat variabel SECRET_PASSWORD. Harap periksa konsol browser.'
-        });
-        return; 
-    }
-    
     Swal.fire({
         title: '🔒 Halaman Terkunci',
         input: 'password',
@@ -64,9 +71,13 @@ function showPasswordPrompt() {
                 return 'Kata sandi tidak boleh kosong!';
             }
         }
-    }).then((result) => {
+    }).then(async (result) => { // Gunakan 'async' di sini
         if (result.isConfirmed) {
-            if (result.value === SECRET_PASSWORD) {
+            
+            // Cek password ke API (ini membutuhkan waktu, makanya kita pakai await)
+            const isCorrect = await checkPassword(result.value); 
+
+            if (isCorrect) {
                 // Password Benar: Tampilkan Konten
                 document.getElementById('main-content').style.display = 'block';
                 showProvocativeAlert();
