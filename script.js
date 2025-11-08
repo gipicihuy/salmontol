@@ -102,3 +102,17 @@ window.addEventListener('load', function() {
     // 2. Mulai dengan meminta password
     showPasswordPrompt();
 });
+
+// script.js (Tambahkan di bagian paling bawah)
+
+// Safety Fallback: Menyembunyikan loading overlay setelah 3 detik
+// Jika ada error JS yang mencegah showPasswordPrompt() berjalan, spinner akan hilang.
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        // Hanya sembunyikan jika main-content belum terlihat (artinya stuck)
+        if (loadingOverlay.style.display !== 'none') {
+            loadingOverlay.style.display = 'none';
+        }
+    }, 3000); 
+});
