@@ -18,6 +18,8 @@ const SENSITIVE_DATA = {
     attitude: 'Egois, Playing Victim, Sok Keras',
     vocab: 'Only, Batu Nisan, Angpao',
     ex: 'Devan, Rey, Husein, Arya, Adit, Tino, Kevin, Iky, Charless',
+    // VERY IMPORTANT PHOTO
+    veryImportantPhoto: 'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/VERY_IMPORTANT_PHOTO.jpg',
     // Gallery
     gallery: [
         'https://b.top4top.io/p_3031g7hp40.jpg',
@@ -36,6 +38,7 @@ const SENSITIVE_DATA = {
         'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0112.jpg',
         'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0111.jpg',
         'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0110.jpg',
+        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/penting.jpg'
     ]
 };
 // --- DATA RAHASIA BERAKHIR DI SINI ---
