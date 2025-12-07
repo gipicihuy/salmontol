@@ -15,6 +15,30 @@ body {
     line-height: 1.8;
 }
 
+/* Pulse Animation for Important Photo */
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scale(1.02);
+    }
+}
+
+.important-photo-section {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+.important-photo-container {
+    padding: 20px;
+    background: rgba(255, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
 /* Loading Overlay */
 #loading-overlay {
     position: fixed;
@@ -120,9 +144,8 @@ marquee span {
     margin: 30px auto 20px;
     padding: 15px;
     background: rgba(26, 29, 58, 0.7);
-    /* MODIFIKASI: Border diubah ke biru dan ditambahkan shadow */
-    border: 2px solid #6bb6ff; /* Biru */
-    box-shadow: 0 0 15px rgba(107, 182, 255, 0.4); /* Shadow Biru */
+    border: 2px solid #6bb6ff;
+    box-shadow: 0 0 15px rgba(107, 182, 255, 0.4);
     border-radius: 12px;
     text-align: center;
     font-size: 1.1rem;
@@ -140,7 +163,6 @@ marquee span {
     vertical-align: middle;
 }
 
-/* Lock icon di Header sekarang biru (#6bb6ff) */
 .private {
     color: #6bb6ff;
 }
@@ -214,13 +236,11 @@ ul {
     text-decoration: underline;
 }
 
-/* MODIFIKASI: Ikon WhatsApp diubah ke biru (#6bb6ff) untuk konsistensi */
 .fa-whatsapp {
     color: #6bb6ff; 
     font-size: 20px;
 }
 
-/* Semua ikon FA yang awalnya pink/red (#ff6b6b) menjadi biru (#6bb6ff) */
 .fa-user, .fa-cake-candles, .fa-calendar-days, .fa-person, .fa-person-dress, .fa-brain, .fa-heart-crack, .fa-user-tie {
     color: #6bb6ff;
 }
@@ -229,12 +249,10 @@ ul {
     color: #6bb6ff;
 }
 
-/* Ikon Skin (.black) diubah dari putih (#ffffff) menjadi biru (#6bb6ff) */
 .black {
     color: #6bb6ff;
 }
 
-/* Ikon Agama, Sikap, Kosakata (Sudah benar, tetap biru) */
 .agama, .sikap, .kosakata {
     color: #6bb6ff;
 }
