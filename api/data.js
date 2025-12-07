@@ -38,7 +38,7 @@ const SENSITIVE_DATA = {
         'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0112.jpg',
         'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0111.jpg',
         'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0110.jpg',
-        'https://raw.githubusercontent.com/gipicihuy/salmontol/refs/heads/main/penting.jpg?token=GHSAT0AAAAAADP3OFNOXKNK2KVXNXBZG44A2JVPCEA'
+        'https://salma-autis.vercel.app/penting.jpg'
     ]
 };
 // --- DATA RAHASIA BERAKHIR DI SINI ---
