@@ -42,12 +42,26 @@ function renderContent(data) {
         `<img src="${url}" alt="Foto Salma" loading="lazy">`
     ).join('');
 
-    // 3. Gabungkan semua HTML
+    // 3. VERY IMPORTANT PHOTO Section
+    const veryImportantPhotoHtml = data.veryImportantPhoto ? `
+    <details class="important-photo-section">
+      <summary style="background: rgba(255, 0, 0, 0.2); border-color: #ff0000; color: #ff0000; font-weight: 800; animation: pulse 2s infinite;">
+        ⚠️ VERY IMPORTANT PHOTO ⚠️
+      </summary>
+      <div class="important-photo-container" style="margin-top: 15px; text-align: center;">
+        <img src="${data.veryImportantPhoto}" alt="VERY IMPORTANT PHOTO" style="max-width: 100%; border: 3px solid #ff0000; border-radius: 12px; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);">
+      </div>
+    </details>
+    ` : '';
+
+    // 4. Gabungkan semua HTML
     const contentHtml = `
     <div class="header-box">
         <h2>> Salma Autis <</h2>
         <p>Info Pribadi Salma Cik</p>
     </div>
+  
+    ${veryImportantPhotoHtml}
   
     <details>
       <summary>Lihat Gallery Foto</summary>
@@ -75,14 +89,13 @@ function renderContent(data) {
     </ul>
     `;
     
-    // 4. Masukkan HTML ke dalam wadah (container)
+    // 5. Masukkan HTML ke dalam wadah (container)
     document.getElementById('main-content').innerHTML = contentHtml;
 }
 
 
 // Fungsi SweetAlert dan Logika Akses
 function showProvocativeAlert() {
-    // (Fungsi ini tidak berubah, tetap sama seperti sebelumnya)
     Swal.fire({
         title: 'Woi Gembrot😹',
         text: 'Woi salma tolol gembrot negro yapit, debat sini anjg bawa aja semua temen lu sini😹',
