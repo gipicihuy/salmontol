@@ -1,17 +1,17 @@
 const SECURE_PASSWORD = process.env.MY_SECRET_PASSWORD;
 
 const SENSITIVE_DATA = {
-    name: 'Salma Apriliyani Salsabila',
+    name: 'Salma apriliyani salsabilanjing',
     residence: 'Sidobasuki, rt/rw 25/12. kel. bumiagung. kec tegineneng. kab. pesawaran, lampung',
     dob: '5 April 2008',
     religion: 'Islam',
     phone: '+62 882-8627-2458',
-    father: 'Sugiarto',
-    mother: 'Prapti',
-    skin: 'putih',
-    brain: 'pintar',
-    attitude: 'baik',
-    vocab: 'mamtap',
+    father: 'Sugiarto Anjing',
+    mother: 'Prapti Peler',
+    skin: 'Negro, Suki',
+    brain: 'Autism, goblok, tolol, dongo',
+    attitude: 'Egois, Playing Victim, Sok Keras',
+    vocab: 'Only, Batu Nisan, Angpao',
     ex: 'Devan, Rey, Husein, Arya, Adit, Tino, Kevin, Iky, Charless',
     veryImportantPhoto: '1.jpg',
     gallery: [
