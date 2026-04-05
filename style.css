@@ -47,12 +47,8 @@ body {
     background: rgba(3, 7, 18, 0.9); 
     backdrop-filter: blur(15px); 
     border-right: 1px solid var(--border); 
-    z-index: 100; 
+    z-index: 1000; 
     transition: 0.3s ease; 
-}
-
-.sidebar.open {
-    transform: translateX(0);
 }
 
 .sidebar-logo { 
@@ -117,7 +113,7 @@ body {
     position: fixed; 
     top: 15px; 
     left: 15px; 
-    z-index: 999; 
+    z-index: 1100; 
     background: var(--accent); 
     border: none; 
     color: #fff; 
@@ -310,7 +306,7 @@ footer {
     .sidebar-toggle { display: block; }
     .page-wrap { margin-left: 0; padding: 80px 15px 20px; }
     .info-grid { grid-template-columns: 1fr; }
-    .sidebar.open ~ .sidebar-toggle { left: 235px; }
+    .sidebar.open ~ .sidebar-toggle { left: calc(var(--sidebar-w) + 15px); }
 }
 
 #loading-overlay { 
