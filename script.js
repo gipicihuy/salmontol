@@ -29,8 +29,7 @@ function renderContent(data) {
         <span class="label-warn"><i class="fas fa-biohazard"></i> VERY IMPORTANT PHOTO</span>
         <div class="image-container-vip">
             <img src="penting.jpg" alt="V1">
-            <img src="penting2.jpg" alt="V2">
-            <img src="${data.veryImportantPhoto}" alt="V3">
+            <img src="penting2.png" alt="V2">
         </div>
     </div>
 
