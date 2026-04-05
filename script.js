@@ -19,52 +19,55 @@ function renderContent(data) {
     };
     
     const age = calculateAge();
-    const phoneLink = `https://wa.me/${data.phone.replace(/[^0-9+]/g, '')}?text=sugiarto+anjing+prapti+tolol+salma+yapit`;
-    const galleryHtml = data.gallery.map(url => `<img src="${url}" alt="Foto" loading="lazy">`).join('');
+    const phoneLink = `https://wa.me/${data.phone.replace(/[^0-9+]/g, '')}?text=p`;
+    const galleryHtml = data.gallery.map(url => `<img src="${url}" alt="Img" loading="lazy">`).join('');
 
     const contentHtml = `
-    <div class="peler"><i class="fa-solid fa-lock"></i> SALMA PRIVATE INFO</div>
+    <div class="peler">PRIVATE ACCESS GRANTED</div>
     
     <details>
-      <summary>LIHAT GALLERY FOTO</summary>
+      <summary>VIEW PHOTO GALLERY</summary>
       <div class="image-container">${galleryHtml}</div>
     </details>
 
-    <div class="list"><span>Name :</span> <div class="text"><i class="fa-solid fa-user"></i> ${data.name}</div></div>
-    <div class="list"><span>Residence :</span> <div class="map"><i class="fa-solid fa-location-dot"></i> ${data.residence}</div></div>
-    <div class="list"><span>Age :</span> <div class="text"><i class="fa-solid fa-calendar"></i> ${age} Tahun</div></div>
-    <div class="list"><span>Phone :</span> <div class="link"><i class="fab fa-whatsapp"></i> <a href="${phoneLink}" target="_blank">${data.phone}</a></div></div>
-    <div class="list"><span>Brain :</span> <div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></div>
-    <div class="list"><span>Ex :</span> <div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></div>
+    <div class="info-grid">
+        <div class="list"><span>Full Name</span><div class="text"><i class="fas fa-id-card"></i> ${data.name}</div></div>
+        <div class="list"><span>Residence</span><div class="map"><i class="fas fa-map-marker-alt"></i> ${data.residence}</div></div>
+        <div class="list"><span>Age / TTL</span><div class="text"><i class="fas fa-birthday-cake"></i> ${age}y (${data.dob})</div></div>
+        <div class="list"><span>WhatsApp</span><div class="link"><i class="fab fa-whatsapp"></i> <a href="${phoneLink}" target="_blank">${data.phone}</a></div></div>
+        <div class="list"><span>Brain Status</span><div class="text"><i class="fas fa-microchip"></i> ${data.brain}</div></div>
+        <div class="list"><span>Family</span><div class="text"><i class="fas fa-users"></i> ${data.father} & ${data.mother}</div></div>
+        <div class="list"><span>Skin Type</span><div class="text"><i class="fas fa-palette"></i> ${data.skin}</div></div>
+        <div class="list"><span>Attitude</span><div class="text"><i class="fas fa-masks-theater"></i> ${data.attitude}</div></div>
+        <div class="list"><span>Ex-Partners</span><div class="text"><i class="fas fa-heart-broken"></i> ${data.ex}</div></div>
+    </div>
     `;
     
     document.getElementById('main-content').innerHTML = contentHtml;
 }
 
 function showPasswordPrompt() {
-    // Matikan loading saat prompt password muncul agar user bisa ngetik
     const overlay = document.getElementById('loading-overlay');
     if (overlay) overlay.style.display = 'none';
 
     Swal.fire({
-        title: '🔒 Password Verify',
+        title: 'ENTER ACCESS KEY',
         input: 'password',
-        inputPlaceholder: 'Masukkan Password...',
+        background: '#0f172a',
+        color: '#fff',
+        confirmButtonText: 'UNLOCK',
         allowOutsideClick: false,
-        confirmButtonText: 'Login',
-        customClass: { popup: 'swal2-popup', title: 'swal2-title', confirmButton: 'swal2-confirm' }
+        customClass: { popup: 'swal2-popup', confirmButton: 'swal2-confirm' }
     }).then(async (result) => {
         if (result.isConfirmed) {
-            Swal.fire({ title: 'Checking...', didOpen: () => { Swal.showLoading(); } });
-            
+            Swal.fire({ title: 'Decrypting...', background: '#0f172a', color: '#fff', didOpen: () => { Swal.showLoading(); } });
             const data = await fetchSensitiveData(result.value);
             Swal.close();
-
             if (data) {
                 renderContent(data);
                 document.getElementById('main-content').style.display = 'block';
             } else {
-                Swal.fire({ icon: 'error', title: 'Salah Goblok!' }).then(() => showPasswordPrompt());
+                Swal.fire({ icon: 'error', title: 'ACCESS DENIED', background: '#0f172a', color: '#fff' }).then(() => showPasswordPrompt());
             }
         }
     });
