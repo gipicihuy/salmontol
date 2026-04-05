@@ -33,20 +33,20 @@ function renderContent(data) {
         </div>
     </div>
     
-    <div class="info-grid">
+   <div class="info-grid">
         <div class="list"><span>Name</span><div class="text"><i class="fa-solid fa-user-tie"></i> ${data.name}</div></div>
         <div class="list"><span>Residence</span><div class="map"><i class="fa-solid fa-location-dot"></i> ${data.residence}</div></div>
         <div class="list"><span>DOB / Age</span><div class="text"><i class="fa-solid fa-cake-candles"></i> ${data.dob} (${age} Tahun)</div></div>
         <div class="list"><span>Religion</span><div class="text"><i class="fa-solid fa-kaaba"></i> ${data.religion}</div></div>
         <div class="list"><span>WhatsApp</span><div class="link"><i class="fab fa-whatsapp"></i> <a href="${phoneLink}" target="_blank">${data.phone}</a></div></div>
-        <div class="list"><span>Parents</span><div class="text"><i class="fa-solid fa-users"></i> ${data.father} & ${data.mother}</div></div>
-        <div class="list"><span>Physical</span><div class="text"><i class="fa-solid fa-user"></i> ${data.skin} Skin</div></div>
-        <div class="list"><span>Status</span><div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></div>
-        <div class="list"><span>Behavior</span><div class="text"><i class="fa-solid fa-mask"></i> ${data.attitude}</div></div>
+        <div class="list"><span>Father's Name</span><div class="text"><i class="fa-solid fa-person"></i> ${data.father}</div></div>
+        <div class="list"><span>Mother's Name</span><div class="text"><i class="fa-solid fa-person-dress"></i> ${data.mother}</div></div>
+        <div class="list"><span>Skin</span><div class="text"><i class="fa-solid fa-user"></i> ${data.skin}</div></div>
+        <div class="list"><span>Brain Status</span><div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></div>
+        <div class="list"><span>Attitude</span><div class="text"><i class="fa-solid fa-mask"></i> ${data.attitude}</div></div>
+        <div class="list"><span>Vocabulary</span><div class="text"><i class="fa-solid fa-book"></i> ${data.vocab}</div></div>
         <div class="list"><span>Ex-Partners</span><div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></div>
-    </div>
-
-    <details>
+    </div>    <details>
       <summary>OPEN ARCHIVE GALLERY</summary>
       <div class="image-container">${galleryHtml}</div>
     </details>
