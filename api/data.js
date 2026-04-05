@@ -1,11 +1,6 @@
-// File: api/data.js
-// Ini berjalan secara aman di server Vercel dan menyimpan konten rahasia.
-
 const SECURE_PASSWORD = process.env.MY_SECRET_PASSWORD;
 
-// --- DATA RAHASIA DISIMPAN DI SINI ---
 const SENSITIVE_DATA = {
-    // Info Pribadi
     name: 'Salma Apriliyani Salsabila',
     residence: 'Sidobasuki, rt/rw 25/12. kel. bumiagung. kec tegineneng. kab. pesawaran, lampung',
     dob: '5 April 2008',
@@ -18,31 +13,13 @@ const SENSITIVE_DATA = {
     attitude: 'baik',
     vocab: 'mamtap',
     ex: 'Devan, Rey, Husein, Arya, Adit, Tino, Kevin, Iky, Charless',
-    // VERY IMPORTANT PHOTO
-    veryImportantPhoto: 'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/VERY_IMPORTANT_PHOTO.jpg',
-    // Gallery
+    veryImportantPhoto: '1.jpg',
     gallery: [
-        'https://b.top4top.io/p_3031g7hp40.jpg',
-        'https://i.ibb.co.com/DQpWdp3/IMG-20240929-183005.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0132.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0130.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0128.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0125.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0127.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0124.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0123.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0122.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0119.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0117.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0113.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0112.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0111.jpg',
-        'https://raw.githubusercontent.com/sedulurkoncolawas/salmontol/refs/heads/main/IMG-20240929-WA0110.jpg',
-        'https://salma-autis.vercel.app/penting.jpg'
+        '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', 
+        '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', 
+        '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg'
     ]
 };
-// --- DATA RAHASIA BERAKHIR DI SINI ---
-
 
 export default async (req, res) => {
     if (req.method !== 'POST') {
@@ -56,11 +33,9 @@ export default async (req, res) => {
     try {
         const { password } = req.body;
 
-        // Cek password. Jika benar, kirimkan SENSITIVE_DATA
         if (password === SECURE_PASSWORD) {
             return res.status(200).json({ success: true, data: SENSITIVE_DATA });
         } else {
-            // Gagal, kirim balasan kosong
             return res.status(200).json({ success: false, message: 'Incorrect Password' });
         }
     } catch (error) {
