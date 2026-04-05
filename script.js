@@ -1,240 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&display=swap');
-
-:root {
-    --bg: #030712;
-    --card: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.06);
-    --text: #f3f4f6;
-    --muted: #9ca3af;
-    --accent: #ef4444;
-    --sidebar-w: 220px;
+async function fetchSensitiveData(password) {
+    const response = await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+    });
+    const data = await response.json();
+    return data.success ? data.data : null;
 }
 
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent; 
+function renderContent(data) {
+    const calculateAge = () => {
+        const birthDate = new Date('2008-04-05');
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) age--;
+        return age;
+    };
+    
+    const age = calculateAge();
+    const phoneLink = `https://wa.me/${data.phone.replace(/[^0-9+]/g, '')}?text=p`;
+    const galleryHtml = data.gallery.map(url => `<img src="${url}" alt="Img" loading="lazy">`).join('');
+
+    const contentHtml = `
+    <div class="peler">PRIVATE ACCESS GRANTED</div>
+
+    <div class="important-section">
+        <span class="label-warn"><i class="fas fa-biohazard"></i> VERY IMPORTANT PHOTO</span>
+        <div class="image-container-vip">
+            <img src="penting.jpg" alt="V1">
+            <img src="penting2.png" alt="V2">
+        </div>
+    </div>
+    
+    <details>
+      <summary>VIEW PHOTO GALLERY</summary>
+      <div class="image-container">${galleryHtml}</div>
+    </details>
+
+    <div class="info-grid">
+        <div class="list"><span>Name</span><div class="text"><i class="fa-solid fa-user-tie"></i> ${data.name}</div></div>
+        <div class="list"><span>Residence</span><div class="map"><i class="fa-solid fa-location-dot"></i> ${data.residence}</div></div>
+        <div class="list"><span>Date Of Birth</span><div class="text"><i class="fa-solid fa-cake-candles"></i> ${data.dob}</div></div>
+        <div class="list"><span>Age</span><div class="text"><i class="fa-solid fa-calendar-days"></i> ${age} Tahun</div></div>
+        <div class="list"><span>Religion</span><div class="text"><i class="fa-solid fa-kaaba"></i> ${data.religion}</div></div>
+        <div class="list"><span>WhatsApp</span><div class="link"><i class="fab fa-whatsapp"></i> <a href="${phoneLink}" target="_blank">${data.phone}</a></div></div>
+        <div class="list"><span>Father's Name</span><div class="text"><i class="fa-solid fa-person"></i> ${data.father}</div></div>
+        <div class="list"><span>Mother's Name</span><div class="text"><i class="fa-solid fa-person-dress"></i> ${data.mother}</div></div>
+        <div class="list"><span>Skin</span><div class="text"><i class="fa-solid fa-user"></i> ${data.skin}</div></div>
+        <div class="list"><span>Brain Status</span><div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></div>
+        <div class="list"><span>Attitude</span><div class="text"><i class="fa-solid fa-mask"></i> ${data.attitude}</div></div>
+        <div class="list"><span>Vocabulary</span><div class="text"><i class="fa-solid fa-book"></i> ${data.vocab}</div></div>
+        <div class="list"><span>Ex</span><div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></div>
+    </div>
+    `;
+    
+    document.getElementById('main-content').innerHTML = contentHtml;
 }
 
-body { 
-    min-height: 100vh; 
-    background: var(--bg); 
-    color: var(--text); 
-    font-family: 'Sora', sans-serif; 
-    overflow-x: hidden; 
-    line-height: 1.4; 
+function initSidebar() {
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const icon = toggleBtn?.querySelector('i');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            sidebar.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                icon?.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                icon?.classList.replace('fa-xmark', 'fa-bars');
+            }
+        };
+
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('open');
+                icon?.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+    }
 }
 
-#bg-canvas { 
-    position: fixed; 
-    inset: 0; 
-    z-index: 0; 
+function showPasswordPrompt() {
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) overlay.style.display = 'none';
+
+    Swal.fire({
+        title: 'ENTER ACCESS KEY',
+        input: 'password',
+        background: '#0f172a',
+        color: '#fff',
+        confirmButtonText: 'UNLOCK',
+        allowOutsideClick: false,
+        customClass: { popup: 'swal2-popup', confirmButton: 'swal2-confirm' }
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            Swal.fire({ title: 'Decrypting...', background: '#0f172a', color: '#fff', didOpen: () => { Swal.showLoading(); } });
+            const data = await fetchSensitiveData(result.value);
+            Swal.close();
+            if (data) {
+                renderContent(data);
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                Swal.fire({ icon: 'error', title: 'ACCESS DENIED', background: '#0f172a', color: '#fff' }).then(() => showPasswordPrompt());
+            }
+        }
+    });
 }
 
-.page-wrap { 
-    position: relative; 
-    z-index: 1; 
-    margin-left: var(--sidebar-w); 
-    padding: 30px; 
-    transition: 0.3s ease; 
-}
-
-.sidebar { 
-    position: fixed; 
-    inset: 0 auto 0 0; 
-    width: var(--sidebar-w); 
-    background: rgba(3, 7, 18, 0.95); 
-    backdrop-filter: blur(15px); 
-    border-right: 1px solid var(--border); 
-    z-index: 2000; 
-    transition: 0.3s ease; 
-}
-
-.sidebar-logo { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    padding: 25px 20px; 
-    border-bottom: 1px solid var(--border); 
-}
-
-.logo-icon { 
-    width: 32px; 
-    height: 32px; 
-    background: var(--accent); 
-    border-radius: 8px; 
-    display: grid; 
-    place-items: center; 
-    color: #fff; 
-}
-
-.logo-text { 
-    font-weight: 800; 
-    font-size: 16px; 
-}
-
-.sidebar-nav { 
-    padding: 15px 10px; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 5px; 
-}
-
-.nav-item { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    padding: 10px 15px; 
-    border-radius: 8px; 
-    color: var(--muted); 
-    text-decoration: none; 
-    font-size: 13px; 
-    transition: 0.2s; 
-}
-
-.nav-item:hover, .nav-item.active { 
-    background: rgba(239, 68, 68, 0.1); 
-    color: var(--accent); 
-}
-
-.sidebar-footer { 
-    position: absolute; 
-    bottom: 0; 
-    width: 100%; 
-    padding: 15px; 
-    font-size: 10px; 
-    color: #4b5563; 
-    text-align: center; 
-}
-
-.sidebar-toggle { 
-    display: none; 
-    position: fixed; 
-    top: 15px; 
-    left: 15px; 
-    z-index: 3000; 
-    background: var(--accent); 
-    border: none; 
-    color: #fff; 
-    width: 45px; 
-    height: 45px; 
-    border-radius: 12px; 
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.important-section { 
-    background: rgba(239, 68, 68, 0.05); 
-    border: 1px solid rgba(239, 68, 68, 0.2); 
-    border-radius: 12px; 
-    padding: 15px; 
-    margin-bottom: 20px; 
-    text-align: center; 
-}
-
-.label-warn { 
-    display: block; 
-    font-size: 10px; 
-    font-weight: 800; 
-    color: var(--accent); 
-    margin-bottom: 10px; 
-    letter-spacing: 2px; 
-}
-
-.image-container-vip { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
-    gap: 10px; 
-}
-
-.image-container-vip img { 
-    width: 100%; 
-    height: 150px; 
-    object-fit: cover; 
-    border-radius: 8px; 
-    border: 1px solid var(--accent); 
-}
-
-.peler { 
-    background: var(--card); 
-    border: 1px solid var(--border); 
-    border-radius: 10px; 
-    padding: 12px; 
-    margin-bottom: 15px; 
-    text-align: center; 
-    font-weight: 800; 
-    font-size: 14px; 
-    color: var(--accent); 
-}
-
-.info-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-    gap: 10px; 
-}
-
-.list { 
-    background: var(--card); 
-    border: 1px solid var(--border); 
-    border-radius: 10px; 
-    padding: 12px; 
-}
-
-.list span { font-size: 9px; color: var(--muted); text-transform: uppercase; }
-
-.text, .map, .link { color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-.text i, .map i, .link i { color: var(--accent); }
-
-.image-container { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
-    gap: 8px; 
-}
-
-.image-container img { width: 100%; height: 130px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
-
-summary { 
-    background: var(--card); 
-    border: 1px solid var(--border); 
-    border-radius: 8px; 
-    padding: 12px; 
-    cursor: pointer; 
-    font-size: 12px; 
-    font-weight: 700; 
-    color: var(--muted); 
-    text-align: center; 
-    list-style: none; 
-}
-
-footer { margin-top: 30px; padding: 20px; text-align: center; font-size: 10px; color: var(--muted); opacity: 0.4; }
-
-@media (max-width: 768px) {
-    .sidebar { transform: translateX(-100%); visibility: hidden; }
-    .sidebar.open { transform: translateX(0); visibility: visible; }
-    .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
-    .page-wrap { margin-left: 0; padding: 80px 15px 20px; }
-    .sidebar.open ~ .sidebar-toggle { left: 235px; }
-}
-
-#loading-overlay { 
-    position: fixed; 
-    inset: 0; 
-    background: var(--bg); 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    z-index: 9999; 
-}
-
-.loading-spinner { 
-    width: 35px; 
-    height: 35px; 
-    border: 2px solid rgba(239, 68, 68, 0.1); 
-    border-top-color: var(--accent); 
-    border-radius: 50%; 
-    animation: spin 0.6s linear infinite; 
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
+document.addEventListener('DOMContentLoaded', () => {
+    showPasswordPrompt();
+    initSidebar();
+});
