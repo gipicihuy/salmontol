@@ -31,15 +31,19 @@ function renderContent(data) {
     </details>
 
     <div class="info-grid">
-        <div class="list"><span>Full Name</span><div class="text"><i class="fas fa-id-card"></i> ${data.name}</div></div>
-        <div class="list"><span>Residence</span><div class="map"><i class="fas fa-map-marker-alt"></i> ${data.residence}</div></div>
-        <div class="list"><span>Age / TTL</span><div class="text"><i class="fas fa-birthday-cake"></i> ${age}y (${data.dob})</div></div>
+        <div class="list"><span>Name</span><div class="text"><i class="fa-solid fa-user-tie"></i> ${data.name}</div></div>
+        <div class="list"><span>Residence</span><div class="map"><i class="fa-solid fa-location-dot"></i> ${data.residence}</div></div>
+        <div class="list"><span>Date Of Birth</span><div class="text"><i class="fa-solid fa-cake-candles"></i> ${data.dob}</div></div>
+        <div class="list"><span>Age</span><div class="text"><i class="fa-solid fa-calendar-days"></i> ${age} Tahun</div></div>
+        <div class="list"><span>Religion</span><div class="text"><i class="fa-solid fa-kaaba"></i> ${data.religion}</div></div>
         <div class="list"><span>WhatsApp</span><div class="link"><i class="fab fa-whatsapp"></i> <a href="${phoneLink}" target="_blank">${data.phone}</a></div></div>
-        <div class="list"><span>Brain Status</span><div class="text"><i class="fas fa-microchip"></i> ${data.brain}</div></div>
-        <div class="list"><span>Family</span><div class="text"><i class="fas fa-users"></i> ${data.father} & ${data.mother}</div></div>
-        <div class="list"><span>Skin Type</span><div class="text"><i class="fas fa-palette"></i> ${data.skin}</div></div>
-        <div class="list"><span>Attitude</span><div class="text"><i class="fas fa-masks-theater"></i> ${data.attitude}</div></div>
-        <div class="list"><span>Ex-Partners</span><div class="text"><i class="fas fa-heart-broken"></i> ${data.ex}</div></div>
+        <div class="list"><span>Father's Name</span><div class="text"><i class="fa-solid fa-person"></i> ${data.father}</div></div>
+        <div class="list"><span>Mother's Name</span><div class="text"><i class="fa-solid fa-person-dress"></i> ${data.mother}</div></div>
+        <div class="list"><span>Skin</span><div class="text"><i class="fa-solid fa-user"></i> ${data.skin}</div></div>
+        <div class="list"><span>Brain Status</span><div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></div>
+        <div class="list"><span>Attitude</span><div class="text"><i class="fa-solid fa-mask"></i> ${data.attitude}</div></div>
+        <div class="list"><span>Vocabulary</span><div class="text"><i class="fa-solid fa-book"></i> ${data.vocab}</div></div>
+        <div class="list"><span>Ex</span><div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></div>
     </div>
     `;
     
