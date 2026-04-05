@@ -7,52 +7,54 @@
     <link rel="shortcut icon" href="https://b.top4top.io/p_3031g7hp40.jpg" type="image/x-icon" />
     <meta property="og:description" content="ini adalah info pribadi salma">
     <meta property="og:url" content="https://salma-autis.vercel.app/">
-    <link href="https://fonts.cdnfonts.com/css/ubuntu" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js" type="text/javascript" charset="utf-8"></script>
+    <script src="script.js" defer></script>
+    
     <title>Info Pribadi Salma Cik</title>
 </head>
 <body>
 
     <canvas id="bg-canvas"></canvas>
 
+    <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <div class="sidebar" id="sidebar">
         <div class="sidebar-logo">
-            <span class="logo-icon"><i class="fas fa-skull"></i></span>
+            <div class="logo-icon"><i class="fas fa-skull"></i></div>
             <span class="logo-text">SalmaHub</span>
         </div>
         <nav class="sidebar-nav">
-            <a href="#" class="nav-item active"><i class="fas fa-user-secret"></i><span>Info Pribadi</span></a>
-            <a href="#" class="nav-item"><i class="fas fa-images"></i><span>Gallery</span></a>
-            <a href="https://wa.me/6288286272458" class="nav-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+            <a href="#" class="nav-item active"><i class="fas fa-user-secret"></i><span>Profile</span></a>
+            <a href="https://wa.me/6288286272458" class="nav-item"><i class="fab fa-whatsapp"></i><span>Contact</span></a>
         </nav>
-        <div class="sidebar-footer">© 2024 Personal Information</div>
+        <div class="sidebar-footer">© 2024 Salma Private</div>
     </div>
 
     <button class="sidebar-toggle" id="sb-toggle"><i class="fas fa-bars"></i></button>
 
     <div class="page-wrap">
-        <div class="main-container" id="main-content" style="display:none;"> 
-        </div>
+        <div id="main-content" style="display:none;"></div>
         <footer>
             © 2024 Personal Information
         </footer>
     </div>
 
-    <div id="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
-
     <script>
         const sbToggle = document.getElementById('sb-toggle');
         const sidebar = document.getElementById('sidebar');
-        sbToggle.onclick = () => {
-            sidebar.classList.toggle('open');
-            sbToggle.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        };
+        if(sbToggle) {
+            sbToggle.onclick = () => {
+                sidebar.classList.toggle('open');
+                sbToggle.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            };
+        }
 
         (function(){
             const canvas = document.getElementById('bg-canvas');
