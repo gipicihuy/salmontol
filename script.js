@@ -24,15 +24,16 @@ function renderContent(data) {
 
     const contentHtml = `
     <div class="peler">PRIVATE ACCESS GRANTED</div>
-    
+
     <div class="important-section">
         <span class="label-warn"><i class="fas fa-biohazard"></i> VERY IMPORTANT PHOTO</span>
         <div class="image-container-vip">
             <img src="penting.jpg" alt="V1">
-            <img src="penting2.png" alt="V2">
+            <img src="penting2.jpg" alt="V2">
+            <img src="${data.veryImportantPhoto}" alt="V3">
         </div>
     </div>
-
+    
     <details>
       <summary>VIEW PHOTO GALLERY</summary>
       <div class="image-container">${galleryHtml}</div>
@@ -51,11 +52,28 @@ function renderContent(data) {
         <div class="list"><span>Brain Status</span><div class="text"><i class="fa-solid fa-brain"></i> ${data.brain}</div></div>
         <div class="list"><span>Attitude</span><div class="text"><i class="fa-solid fa-mask"></i> ${data.attitude}</div></div>
         <div class="list"><span>Vocabulary</span><div class="text"><i class="fa-solid fa-book"></i> ${data.vocab}</div></div>
-        <div class="list"><span>Ex-Partners</span><div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></div>
+        <div class="list"><span>Ex</span><div class="text"><i class="fa-solid fa-heart-crack"></i> ${data.ex}</div></div>
     </div>
     `;
     
     document.getElementById('main-content').innerHTML = contentHtml;
+}
+
+function initSidebar() {
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const icon = toggleBtn?.querySelector('i');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                icon?.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                icon?.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+    }
 }
 
 function showPasswordPrompt() {
@@ -85,4 +103,7 @@ function showPasswordPrompt() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', showPasswordPrompt);
+document.addEventListener('DOMContentLoaded', () => {
+    showPasswordPrompt();
+    initSidebar();
+});
