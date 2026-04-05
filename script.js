@@ -29,8 +29,7 @@ function renderContent(data) {
         <span class="label-warn"><i class="fas fa-biohazard"></i> VERY IMPORTANT PHOTO</span>
         <div class="image-container-vip">
             <img src="penting.jpg" alt="V1">
-            <img src="penting2.jpg" alt="V2">
-            <img src="${data.veryImportantPhoto}" alt="V3">
+            <img src="penting2.png" alt="V2">
         </div>
     </div>
     
@@ -65,11 +64,19 @@ function initSidebar() {
     const icon = toggleBtn?.querySelector('i');
 
     if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', () => {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             sidebar.classList.toggle('open');
             if (sidebar.classList.contains('open')) {
                 icon?.classList.replace('fa-bars', 'fa-xmark');
             } else {
+                icon?.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('open');
                 icon?.classList.replace('fa-xmark', 'fa-bars');
             }
         });
